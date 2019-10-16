@@ -22,18 +22,27 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.main_layout);
         PreferenceManager.setDefaultValues(this,
                 R.xml.root_preferences,false);
+
+
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
         savedValues = PreferenceManager.getDefaultSharedPreferences(this);
         showImages = savedValues.getBoolean(getResources().getString(R.string.image_pref_key), false);
-
+        ImageView image = findViewById(R.id.imageView1);
+        ImageView image2 = findViewById(R.id.imageView2);
+        ImageView image3 = findViewById(R.id.imageView3);
         if(!showImages){
-            ImageView image = findViewById(R.id.imageView1);
             image.setVisibility(ImageView.GONE);
-            ImageView image2 = findViewById(R.id.imageView2);
             image2.setVisibility(ImageView.GONE);
-            ImageView image3 = findViewById(R.id.imageView3);
             image3.setVisibility(ImageView.GONE);
+        } else {
+            image.setVisibility(ImageView.VISIBLE);
+            image2.setVisibility(ImageView.VISIBLE);
+            image3.setVisibility(ImageView.VISIBLE);
         }
-
     }
 
     @Override
